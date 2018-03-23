@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Knewave|Varela+Round" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- custom styles -->
+  <link rel="stylesheet" type="text/css" href="/styles/main.css">
+
+
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.0.4/jscolor.js"></script>
+
+  <!-- custom javascript -->
+  <script type="text/javascript" src="/scripts/app.js"></script>
+
+  <title>Color Test</title>
+
+</head>
+<body id="body">
+
+  <script src="jscolor.js"></script>
+  <h1>Pick two colors to make a gradient</h2>
+  <p>choose a value out of 100 to show the equivalently positioned color in the gradient scale shown in the second box</p>
+  <input id="scale" value="50" onchange="inputUpdate(this)">
+  <p><h2>Color One:</h2>
+  <input class="jscolor" onchange="update(this)" value="ffffff" id="colorOne"><br>
+  <!-- <button class="jscolor" value="cc66ff" onchange="update(this)" id="colorOne">Color One</button><br> -->
+  <span id="redOne">Red: </span><br>
+  <span id="greenOne">Green: </span><br>
+  <span id="blueOne">Blue: </span><br>
+  <h2>Color Two:</h2><input class="jscolor" onchange="update(this)" value="ffffff" id="colorTwo"><br>
+  <span id="redTwo">Red: </span><br>
+  <span id="greenTwo">Green: </span><br>
+  <span id="blueTwo">Blue: </span>
+
+  <p id="rect" style="border:1px solid gray; width:161px; height:100px;">
+  <p id="rect2" style="border:1px solid gray; width:161px; height:100px;">
+
+
+  <script>
+  var colorOne = "rgb(255,0,0)"
+  var colorTwo = "rgb(0,0,255)"
+  var redOne = 0
+  var redTwo = 0
+  var greenOne = 0
+  var greenTwo = 0
+  var blueOne = 0
+  var blueTwo = 0
+  var newRed = ""
+  var newBlue = ""
+  var newGreen = ""
+  var input = document.getElementById("scale").value
+
+  function inputUpdate(newValue) {
+    newRed = findColor(redOne, redTwo, newValue.value);
+    newGreen = findColor(greenOne, greenTwo, newValue.value);
+    newBlue = findColor(blueOne, blueTwo, newValue.value);
+
+    document.getElementById('rect2').style.background = "rgb(" + newRed + "," + newGreen + "," + newBlue + ")";
+  }
+
+
+  function update(jscolor) {
+    if (jscolor.id == "colorOne") {
+      colorOne = jscolor.jscolor.toRGBString();
+      document.getElementById('rect').style.background = "linear-gradient(to right, " + colorOne + ", " + colorTwo + ")";
+
+      redOne = Math.round(jscolor.jscolor.rgb[0]);
+      document.getElementById('redOne').innerHTML = "Red: " + redOne.toString();
+      console.log("redOne: " + redOne.toString())
+      newRed = findColor(redOne, redTwo, input);
+
+      greenOne = Math.round(jscolor.jscolor.rgb[1]);
+      document.getElementById('greenOne').innerHTML = "Green: " + greenOne.toString();
+      console.log("greenOne: " + greenOne.toString())
+      newGreen = findColor(greenOne, greenTwo, input);
+
+      blueOne = Math.round(jscolor.jscolor.rgb[2]);
+      document.getElementById('blueOne').innerHTML = "Blue: " + blueOne.toString();
+      console.log("blueOne: " + blueOne)
+      newBlue = findColor(blueOne, blueTwo, input);
+      console.log([newRed, newGreen, newBlue])
+
+
+      document.getElementById('rect2').style.background = "rgb(" + newRed + "," + newGreen + "," + newBlue + ")";
+    } else if (jscolor.id == "colorTwo") {
+      colorTwo = jscolor.jscolor.toRGBString();
+      document.getElementById('rect').style.background = "linear-gradient(to right, " + colorOne + ", " + colorTwo + ")";
+
+      redTwo = Math.round(jscolor.jscolor.rgb[0])
+      document.getElementById('redTwo').innerHTML = "Red: " + redTwo.toString();
+      console.log("redTwo: " + redTwo.toString())
+      newRed = findColor(redOne, redTwo, input);
+
+
+      greenTwo = Math.round(jscolor.jscolor.rgb[1]);
+      document.getElementById('greenTwo').innerHTML = "Green: " + greenTwo.toString();
+      console.log("greenTwo: " + greenTwo.toString())
+      newGreen = findColor(greenOne, greenTwo, input);
+
+      blueTwo = Math.round(jscolor.jscolor.rgb[2]);
+      document.getElementById('blueTwo').innerHTML = "Blue: " + blueTwo.toString();
+      console.log("blueTwo: " + blueTwo)
+      newBlue = findColor(blueOne, blueTwo, input);
+
+      document.getElementById('rect2').style.background = "rgb(" + newRed + "," + newGreen + "," + newBlue + ")";
+    }
+  }
+
+var findColor = function(colorOne, colorTwo, input) {
+  if (colorOne !== colorTwo) {
+    var scaleHigh = 100;
+    var differnce = Math.abs(colorOne - colorTwo);
+    var newValue = 0
+    if (colorOne > colorTwo) {
+      newValue = Math.round(colorOne - (differnce*input/scaleHigh));
+    } else {
+      newValue = Math.round(colorOne + (differnce*input/scaleHigh));
+    }
+
+    console.log(newValue);
+    return newValue;
+
+  } else {
+    return colorOne
+  }
+}
+
+</script>
+
+</body>
