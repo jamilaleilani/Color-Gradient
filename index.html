@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <link href="https://fonts.googleapis.com/css?family=Knewave|Varela+Round" rel="stylesheet">
+  <link href="styles/main.css" rel="stylesheet">
+
   <!-- jscolor -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.0.4/jscolor.js"></script>
 
@@ -12,22 +15,22 @@
 </head>
 <body id="body">
   <!-- <script src="jscolor.js"></script> -->
-
-  <h1>Pick two colors to make a gradient</h2>
-  <p>choose a value out of 100 to show the equivalently positioned color in the gradient scale shown in the second box</p>
-  <input id="scale" value="50" onchange="update(this)">
-  <p><h2>Color One:</h2><input class="jscolor" onchange="update(this)" value="ffffff" id="colorOne"><br>
-  <span id="redOne">Red: </span><br>
-  <span id="greenOne">Green: </span><br>
-  <span id="blueOne">Blue: </span><br>
-  <h2>Color Two:</h2><input class="jscolor" onchange="update(this)" value="ffffff" id="colorTwo"><br>
-  <span id="redTwo">Red: </span><br>
-  <span id="greenTwo">Green: </span><br>
-  <span id="blueTwo">Blue: </span>
-
-  <p id="rect" style="border:1px solid gray; width:161px; height:100px;">
-  <p id="rect2" style="border:1px solid gray; width:161px; height:100px;">
-
+  <div id="info" class="spacing">
+    <h1 class="spacing">Pick two colors to make a gradient</h2>
+    <p class="instructions spacing">choose a value out of 100 to change the background color according to the scale </p>
+    <div><input id="scale" value="50" onchange="update(this)" class="spacing">/100</div>
+    <div class="colorBox">
+      <div class="spacing">
+        <h2>Color One:</h2>
+        <input class="jscolor spacing" onchange="update(this)" value="ff0000" id="colorOne">
+      </div>
+      <div class="spacing">
+        <h2>Color Two:</h2>
+        <input class="jscolor spacing" onchange="update(this)" value="0000ff" id="colorTwo">
+      </div>
+    </div>
+    <div id="rect" class="spacing"></div>
+  </div>
 
   <script type="text/javascript" src="scripts/app.js"></script>
 

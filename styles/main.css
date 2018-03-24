@@ -1,0 +1,73 @@
+* {
+  font-family: 'Varela Round';
+  font-size: 18px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: rgb(127,0,127);
+}
+
+#info {
+  background: white;
+  padding: 2em;
+  width: 80%;
+  margin: 5em auto 0 auto;
+  text-align: center;
+}
+
+.spacing {
+  margin: 1em auto;
+}
+
+h1 {
+  font-family: knewave;
+  font-size: 2em;
+}
+
+.instructions {
+  width: 20em;
+  text-align: center;
+}
+
+.colorBox {
+  display: flex;
+}
+
+#colorOne, #colorTwo {
+  width: 90px;
+  height: 50px;
+  text-align: center;
+  border: none;
+  font-size: 0px;
+  margin-top: 5px;
+}
+
+#scale {
+  width: 2em;
+  height: 1.5em;
+  text-align: center;
+}
+
+#rect {
+  height: 2em;
+  margin: 2em auto;
+  background: linear-gradient(to right,rgb(255,0,0),rgb(0,0,255));
+}
+
+@media only screen and (max-width: 670px) {
+  * {
+    font-size: 14px;
+  }
+
+  .instructions {
+    text-align: justify;
+  }
+
+  h1 {
+    font-size: 1.8em;
+  }
+
+}

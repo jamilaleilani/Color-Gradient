@@ -1,18 +1,18 @@
 var input = 50
 
 var colorOne = {
-  rgb: [255,255,255],
-  rgbString: "rgb(255,255,255)"
+  rgb: [255,0,0],
+  rgbString: "rgb(255,0,0)"
 }
 
 var colorTwo = {
-  rgb: [255,255,255],
-  rgbString: "rgb(255,255,255)"
+  rgb: [0,0,255],
+  rgbString: "rgb(0,0,255)"
 }
 
 var newColor = {
-  rgb: [255,255,255],
-  rgbString: "rgb(255,255,255)"
+  rgb: [127,0,127],
+  rgbString: "rgb(127,0,127)"
 }
 
 function update(data) {
@@ -27,7 +27,7 @@ function update(data) {
   newColor.rgb = findColor(colorOne.rgb, colorTwo.rgb, input)
   newColor.rgbString = "rgb(" + newColor.rgb + ")"
   document.getElementById('rect').style.background = "linear-gradient(to right, " + colorOne.rgbString + ", " + colorTwo.rgbString + ")";
-  document.getElementById('rect2').style.background = newColor.rgbString;
+  document.getElementById('body').style.background = newColor.rgbString;
 }
 
 
